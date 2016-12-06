@@ -6,12 +6,12 @@
 #include "initialize.h"
 #include "gamefunction.h"
 
-char g_fileName[] = "level";
+char g_fileName[12];
 
 void Initialize()
 {
 	SetConsoleTitle("::PUSH PUSH:: by KSY CYJ");
-	system("mode con lines=20 cols=50");
+	system("mode con lines=16 cols=41");
 	system("color 0E");
 	system("cls");
 }
@@ -51,7 +51,7 @@ void MainScreen()
 	printf("▩                                    ▩\n");
 	printf("▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n");
 
-	while (!((m_select == 's') || (m_select == 'c') || (m_select == 'h') || (m_select == 27)))
+	while (!((m_select == 's') || (m_select == 'S') || (m_select == 'c') || (m_select == 'C') || (m_select == 'h') || (m_select == 'H') || (m_select == 27)))
 	{
 		m_select = _getch();
 		switch (m_select)
@@ -60,11 +60,22 @@ void MainScreen()
 			//printf( "\a" );
 			SelectLevel();
 			break;
+		case 'S':
+			//printf( "\a" );
+			SelectLevel();
+			break;
 		case 'c':
 			//printf( "\a" );
 			Credit();
 			break;
+		case 'C':
+			//printf( "\a" );
+			Credit();
+			break;
 		case 'h':
+			Help();
+			break;
+		case 'H':
 			Help();
 			break;
 		case 27:
@@ -105,7 +116,7 @@ void SelectLevel()
 	printf("▩                                    ▩\n");
 	printf("▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n");
 
-	while (!((m_select == '1') || (m_select == '2') || (m_select == 'r')))
+	while (!((m_select == '1') || (m_select == '2') || (m_select == 'r') || (m_select == 'R')))
 	{
 		m_select = _getch();
 		MoveCursor(6, 9);
@@ -122,7 +133,7 @@ void SelectLevel()
 
 			scanf_s("%s", &m_temp, sizeof(m_temp));
 
-			if (m_temp[0] == 'r')
+			if (m_temp[0] == 'r' || m_temp[0] == 'R')
 			{
 				if (strlen(m_temp) > 1)
 				{
@@ -143,7 +154,7 @@ void SelectLevel()
 			ColorChange("파일명을 입력해 주세요.\n", NULL, 15);
 			MoveCursor(6, 10);
 			scanf_s("%s", g_fileName, sizeof(g_fileName));
-			if (g_fileName[0] == 'r')
+			if (g_fileName[0] == 'r' || g_fileName[0] == 'R')
 			{
 				if (strlen(g_fileName) > 1)
 				{
@@ -158,6 +169,9 @@ void SelectLevel()
 			}
 			break;
 		case 'r':
+			MainScreen();
+			break;
+		case 'R':
 			MainScreen();
 			break;
 		default:
@@ -189,10 +203,10 @@ void Help()
 	printf("▩                                    ▩\n");
 	printf("▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n");
 
-	while (!(m_select == 'r'))
+	while (!((m_select == 'r') || (m_select == 'R')))
 	{
 		m_select = _getch();
-		if (m_select == 'r')
+		if (m_select == 'r' || m_select == 'R')
 		{
 			//printf( "\a" );
 			MainScreen();
@@ -222,10 +236,10 @@ void Credit()
 	printf("▩                                    ▩\n");
 	printf("▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n");
 
-	while (!(m_select == 'r'))
+	while (!((m_select == 'r') || (m_select == 'R')))
 	{
 		m_select = _getch();
-		if (m_select == 'r')
+		if (m_select == 'r' || m_select == 'R')
 		{
 			//printf( "\a" );
 			MainScreen();

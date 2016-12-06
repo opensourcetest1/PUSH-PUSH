@@ -78,7 +78,7 @@ void Draw()
 	else if (g_fileName[5] >= 48 && g_fileName[5] < 57)
 	{
 		g_fileName[5]++;
-		Level_Popup("Level Clear");
+		Level_Popup("Level Clear ");
 		GameStart(g_fileName);
 	}
 
@@ -124,6 +124,9 @@ void Move(int _x, int _y)
 		j = 1;
 		break;
 	case 'r':
+		LoadData(g_fileName);
+		break;
+	case 'R':
 		LoadData(g_fileName);
 		break;
 	case 27:
@@ -251,7 +254,7 @@ void Level_Popup(char _message[])
 	//system( "cls" );
 	MoveCursor(10, 7);
 	printf("┏");
-	for (i = 0; i < sizeof(_message) + 2; i++)
+	for (i = 0; i < sizeof(_message) + 3; i++)
 		printf("━");
 	printf("┓\n");
 	MoveCursor(10, 8);
@@ -260,7 +263,7 @@ void Level_Popup(char _message[])
 	printf(" ┃\n");
 	MoveCursor(10, 9);
 	printf("┗");
-	for (i = 0; i < sizeof(_message) + 2; i++)
+	for (i = 0; i < sizeof(_message) + 3; i++)
 		printf("━");
 	printf("┛\n");
 

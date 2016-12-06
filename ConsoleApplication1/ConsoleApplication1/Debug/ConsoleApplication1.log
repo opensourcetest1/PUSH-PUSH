@@ -1,12 +1,7 @@
-﻿  main.c
-  initialize.c
-c:\users\민혁\desktop\sokoban3\push-push\initialize.c(13): warning C4133: 'function': incompatible types - from 'char [25]' to 'LPCWSTR'
-  gamefunction.c
-c:\users\민혁\desktop\sokoban3\push-push\gamefunction.c(55): warning C4474: 'printf' : too many arguments passed for format string
-  c:\users\민혁\desktop\sokoban3\push-push\gamefunction.c(55): note: placeholders and their parameters expect 0 variadic arguments, but 2 were provided
-c:\users\민혁\desktop\sokoban3\push-push\gamefunction.c(58): warning C4474: 'printf' : too many arguments passed for format string
-  c:\users\민혁\desktop\sokoban3\push-push\gamefunction.c(58): note: placeholders and their parameters expect 0 variadic arguments, but 2 were provided
-  Generating Code...
-  LINK : C:\Users\민혁\Desktop\sokoban3\PUSH-PUSH\ConsoleApplication1\Debug\ConsoleApplication1.exe not found or not built by the last incremental link; performing full link
-  ConsoleApplication1.vcxproj -> C:\Users\민혁\Desktop\sokoban3\PUSH-PUSH\ConsoleApplication1\Debug\ConsoleApplication1.exe
-  ConsoleApplication1.vcxproj -> C:\Users\민혁\Desktop\sokoban3\PUSH-PUSH\ConsoleApplication1\Debug\ConsoleApplication1.pdb (Full PDB)
+﻿  gamefunction.c
+c:\users\민혁\soko\push-push\gamefunction.c(55): warning C4474: 'printf' : too many arguments passed for format string
+  c:\users\민혁\soko\push-push\gamefunction.c(55): note: placeholders and their parameters expect 0 variadic arguments, but 2 were provided
+c:\users\민혁\soko\push-push\gamefunction.c(58): warning C4474: 'printf' : too many arguments passed for format string
+  c:\users\민혁\soko\push-push\gamefunction.c(58): note: placeholders and their parameters expect 0 variadic arguments, but 2 were provided
+  ConsoleApplication1.vcxproj -> C:\Users\민혁\soko\PUSH-PUSH\ConsoleApplication1\Debug\ConsoleApplication1.exe
+  ConsoleApplication1.vcxproj -> C:\Users\민혁\soko\PUSH-PUSH\ConsoleApplication1\Debug\ConsoleApplication1.pdb (Full PDB)
