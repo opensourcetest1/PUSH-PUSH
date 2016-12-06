@@ -1,21 +1,74 @@
 ﻿#include< stdio.h >
 #include< conio.h >
 #include< windows.h >
+#include< stdlib.h >
 
 #include "initialize.h"
 #include "gamefunction.h"
 
 extern char g_fileName[12];
-
 char g_map[13][20];
 int g_count = 0;
 
-void Draw()
+undostack *ud;
+
+void init(undostack *s)
+{
+	s->top = 0;
+}
+
+int is_empty(undostack *s)
+{
+	return (s->top == -1);
+}
+
+int is_full(undostack *s)
+{
+	return (s->top == 999);
+}void push(undostack *s, int item)
+{
+	if (is_full(s)) {
+		fprintf(stderr, "Undo 불가");
+		return;
+	}
+	else {
+		s->stack[++(s->top)] = item;
+		printf("%d", s->stack[s->top]);
+		printf("%d", s->top);
+	}
+}
+
+void push1(undostack *s, int item)
+{
+	if (is_full(s)) {
+		fprintf(stderr, "Undo 불가");
+		return;
+	}
+	else {
+		s->ud[(s->top)] = item;
+		printf("aaa : %d", item);
+		printf(" %d %d ", s->top, s->stack1[s->top]);
+	}
+}
+
+int pop(undostack *s)
+{
+	return s->stack[(s->top)];
+}int pop1(undostack *s)
+{
+	return s->stack1[(s->top)--];
+}void Draw()
 {
 	char m_level = 1;
 	int i;
 	int j;
-
+	int tmp = 0;
+	if (tmp == 0)
+	{
+		ud = (undostack *)malloc(100 * sizeof(undostack));
+		init(ud);
+		tmp++;
+	}
 	int m_x;
 	int m_y;
 
@@ -78,7 +131,7 @@ void Draw()
 	else if (g_fileName[5] >= 48 && g_fileName[5] < 57)
 	{
 		g_fileName[5]++;
-		Level_Popup("Level Clear ");
+		Level_Popup("Level Clear");
 		GameStart(g_fileName);
 	}
 
@@ -100,33 +153,50 @@ void Move(int _x, int _y)
 	int j = 0;	//열
 
 	char m_key = _getch(); // 키를 입력받음 m_key 형태로
-
 	switch (m_key)
 	{
 	case 72: //상
 		g_count = g_count + 1;
 		i = -1;
 		j = 0;
+		printf("%d", i);
+		push(ud, i);
+		push1(ud, j);
 		break;
 	case 80: //하
 		g_count = g_count + 1;
 		i = 1;
 		j = 0;
+		push(ud, i);
+		push1(ud, j);
 		break;
 	case 75: //좌
 		g_count = g_count + 1;
 		i = 0;
 		j = -1;
+		push(ud, i);
+		push1(ud, j);
 		break;
 	case 77: //우
 		g_count = g_count + 1;
 		i = 0;
 		j = 1;
+		push(ud, i);
+		push1(ud, j);
+		break;
+	case 'u':
+		if (g_count < 0)
+			g_count = 0;
+		else {
+			i = (pop(ud));
+			j = (pop1(ud));
+			printf("%d", ud->top);
+			printf("%d", i);
+			printf("%d", j);
+			g_count--;
+		}
 		break;
 	case 'r':
-		LoadData(g_fileName);
-		break;
-	case 'R':
 		LoadData(g_fileName);
 		break;
 	case 27:
@@ -254,7 +324,7 @@ void Level_Popup(char _message[])
 	//system( "cls" );
 	MoveCursor(10, 7);
 	printf("┏");
-	for (i = 0; i < sizeof(_message) + 3; i++)
+	for (i = 0; i < sizeof(_message) + 2; i++)
 		printf("━");
 	printf("┓\n");
 	MoveCursor(10, 8);
@@ -263,7 +333,7 @@ void Level_Popup(char _message[])
 	printf(" ┃\n");
 	MoveCursor(10, 9);
 	printf("┗");
-	for (i = 0; i < sizeof(_message) + 3; i++)
+	for (i = 0; i < sizeof(_message) + 2; i++)
 		printf("━");
 	printf("┛\n");
 
